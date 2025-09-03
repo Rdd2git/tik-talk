@@ -1,0 +1,16 @@
+@if (profile$ | async; as profile) {
+<header class="profile-page__header">
+	<app-profile-header [profile]="profile"></app-profile-header><a class="btn to-setting-btn"
+		[routerLink]="['/settings']">
+		Редактировать
+		<svg icon="settings" class="to-setting-icon"></svg>
+	</a>
+</header>
+<main class="profile-page__body">
+	<div></div>
+	<h3 class="h6 mb16">Подписчики</h3>
+	@for (subscriber of subscribers$ | async; track subscriber) {
+	<a class="subscriber-avatar-btn"><img [src]="subscriber.avatarUrl | imageUrl" alt=""></a>
+	}
+</main>
+}

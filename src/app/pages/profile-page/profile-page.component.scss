@@ -1,0 +1,23 @@
+.profile-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.to-setting-btn {
+  width: 190px;
+  text-decoration: none;
+  display: flex;
+  text-align: center;
+  gap: 12px;
+}
+.to-setting-icon {
+  height: 16px;
+  width: 16px;
+  color: var(--dark-color);
+}
+
+.profile-page__body {
+  display: grid;
+  grid-gap: 64px;
+  grid-template-columns: 1fr 350px;
+}
