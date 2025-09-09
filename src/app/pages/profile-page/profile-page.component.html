@@ -7,10 +7,28 @@
 	</a>
 </header>
 <main class="profile-page__body">
-	<div></div>
-	<h3 class="h6 mb16">Подписчики</h3>
-	@for (subscriber of subscribers$ | async; track subscriber) {
-	<a class="subscriber-avatar-btn"><img [src]="subscriber.avatarUrl | imageUrl" alt=""></a>
-	}
+	<app-post-feed></app-post-feed>
+	<div>
+		<h3 class="h6 mb16">Подписчики</h3>
+		<div class="subscriber-wrapper mb32">
+			@for (subscriber of subscribers$ | async; track subscriber) {
+			<a class="subscriber-avatar-btn" [routerLink]="['/profile', subscriber.id]"><img
+					[src]="subscriber.avatarUrl | imageUrl" alt=""></a>
+			}
+			<a class="to-subscribers-search" routerLink="['/search']"></a>
+
+		</div>
+		<h3 class="h6 mb16">Навыки</h3>
+		<div class="stack-wrapper mb16">
+			@for (skill of [1213,123,233]; track skill) {
+			<div class="skill-tag">{{ skill }}</div>
+			}
+		</div>
+
+		<h3 class="h6 mb16">О себе</h3>
+		<p class="medium-text">{{profile.description}}</p>
+	</div>
+
+
 </main>
 }

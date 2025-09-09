@@ -16,10 +16,10 @@ export class ProfileService {
     return this.http.get<Profile[]>(`${this.baseApiUrl}/account/test_accounts`);
   }
 
-  getSubscribersShortList() {
+  getSubscribersShortList(subsAmount = 3) {
     return this.http
       .get<Pageble<Profile>>(`${this.baseApiUrl}/account/subscribers/`)
-      .pipe(map((response) => response.items.slice(0, 3)));
+      .pipe(map((response) => response.items.slice(0, subsAmount)));
   }
 
   getMe() {
@@ -29,5 +29,11 @@ export class ProfileService {
   }
   getAccount(id: string) {
     return this.http.get<Profile>(`${this.baseApiUrl}/account/${id}`);
+  }
+  patchProfile(profile: Partial<Profile>) {
+    return this.http
+      .patch<Profile>(`${this.baseApiUrl}/account/me`, profile)
+      .pipe(tap((res) => this.me.set(res)))
+      .subscribe();
   }
 }

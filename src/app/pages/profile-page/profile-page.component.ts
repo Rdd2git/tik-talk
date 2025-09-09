@@ -7,6 +7,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { switchMap } from 'rxjs';
 import { SvgIconComponent } from '../../common-ui/svg-icon/svg-icon.component';
 import { ImageUrlPipe } from '../../helpers/pipes/image-url.pipe';
+import { PostFeedComponent } from './post-feed/post-feed.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -17,13 +18,14 @@ import { ImageUrlPipe } from '../../helpers/pipes/image-url.pipe';
     SvgIconComponent,
     RouterLink,
     ImageUrlPipe,
+    PostFeedComponent,
   ],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
 })
 export class ProfilePageComponent {
   profileService = inject(ProfileService);
-  subscribers$ = this.profileService.getSubscribersShortList();
+  subscribers$ = this.profileService.getSubscribersShortList(5);
   route = inject(ActivatedRoute);
   me$ = toObservable(this.profileService.me);
   profile$ = this.route.params.pipe(
